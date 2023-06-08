@@ -3,10 +3,10 @@ body {
       background-color: rgb(247, 240, 179);
 }
 
-h1,
-p {
+h1 {
       color: #000000;
       text-align: center;
+      margin-top: 80px;
 }
 
 form {
@@ -21,11 +21,17 @@ form {
       background-color: bisque;
 }
 
+form p {
+      text-align: center;
+      color: #000000;
+      font-size: 15px;
+}
+
 form label {
       justify-items: center;
       text-align: center;
       word-spacing: 1px;
-      padding-bottom: 20px;
+      font-size: 15px;
 }
 
 form input {
@@ -36,4 +42,73 @@ form input #file {
 }
 form select {
       width: 100%;
+}
+
+nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(223, 208, 201);
+      height: 40px;
+      margin-top: 0;
+      text-decoration: none;
+      margin-left: 30%;
+      margin-right: 30%;
+      border-radius: 10px;
+      margin-top: 5%;
+      border: 1px solid white;
+}
+
+.logo {
+      position: absolute;
+      left: 10px;
+}
+
+button {
+      border: 1px solid white;
+      border-radius: 5px;
+      margin-left: 10px;
+      background-color: blanchedalmond;
+      font-size: 15px;
+}
+
+button:hover {
+      background-color: rgb(255, 201, 125);
+}
+
+button:active {
+      background-color: rgb(255, 195, 106);
+}
+
+button a {
+      text-decoration: none;
+      color: #000000;
+}
+
+ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+}
+
+li {
+      margin: 0 10px;
+      text-decoration: none;
+}
+
+.dropdown {
+      position: relative;
+}
+
+.dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      text-decoration: none;
+}
+
+.dropdown:hover .dropdown-content {
+      display: block;
 }

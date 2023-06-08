@@ -1,1 +1,0 @@
-ssh -i "XXXXXXXX.pem" ubuntu@ec2-XXX-XXX-XXX-XXX.compute-1.amazonaws.com

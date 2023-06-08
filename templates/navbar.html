@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<title>Tru-Min Converter</title>
+
+<h1>Tru-Min Converter</h1>
+<nav>
+      <ul>
+            <button>
+                  <li>
+                        <a href="{{ url_for('index') }}">Convert Audio</a>
+                  </li>
+            </button>
+            <button>
+                  <li><a href="{{ url_for('youtube') }}">Youtube</a></li>
+            </button>
+            <button>
+                  <li><a href="{{ url_for('playlist') }}">Playlist</a></li>
+            </button>
+      </ul>
+</nav>

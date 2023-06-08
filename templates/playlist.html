@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+{% include 'navbar.html' %}
+
+<form action="/download_playlist" method="POST">
+      <label for="playlist_url">YouTube Playlist URL:</label><br /><br />
+      <input
+            type="text"
+            name="playlist_url"
+            id="playlist_url"
+            placeholder="Enter YouTube playlist URL"
+            required
+      /><br /><br />
+      <input type="submit" value="Download" />
+      <p>Automatically convert playlist videos to MP3 and download.</p>
+</form>

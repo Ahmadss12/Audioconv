@@ -1,30 +1,17 @@
-<!DOCTYPE html>
-<html>
-      <head>
-            <title>Audio Converter</title>
-            <link
-                  rel="stylesheet"
-                  href="{{ url_for('static', filename='style.css') }}"
-            />
-      </head>
-      <body>
-            <h1>Audio Converter</h1>
-            <p>
-                  Welcome to the Audio Converter website. Here you can convert
-                  your audio files to different formats.
-            </p>
-            <form action="/convert" method="post" enctype="multipart/form-data">
-                  <input type="file" name="video" />
-                  <input type="submit" value="Convert" />
-            </form>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 
-            {% if output_file %}
-            <p>File converted: {{ output_file }}</p>
-            <a href="{{ url_for('download', filename=output_file) }}"
-                  >Download</a
-            >
-            {% endif %} {% if loading %}
-            <p>Loading...</p>
-            {% endif %}
-      </body>
-</html>
+{% include 'navbar.html' %}
+
+<form action="/convert" method="POST" enctype="multipart/form-data">
+      <label for="video">Convert Audio</label><br /><br />
+      <input type="file" name="video" id="video" required /><br /><br />
+      <input type="submit" value="Download" />
+      <p>Automatically convert video to MP3 and download.</p>
+</form>
+
+{% if output_file %}
+<p>File converted: {{ output_file }}</p>
+<a href="{{ url_for('download', filename=output_file) }}">Download</a>
+{% endif %} {% if loading %}
+<p>Loading...</p>
+{% endif %}

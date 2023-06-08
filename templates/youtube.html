@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+{% include 'navbar.html' %}
+
+<form action="/download_video" method="POST">
+      <label for="video_url">YouTube Video URL:</label><br /><br />
+      <input
+            type="text"
+            name="video_url"
+            id="video_url"
+            placeholder="Enter YouTube video URL"
+            required
+      /><br /><br />
+      <input type="submit" value="Download" />
+      <p>Automatically download video.</p>
+</form>
