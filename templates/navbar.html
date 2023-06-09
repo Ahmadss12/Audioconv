@@ -4,16 +4,31 @@
 <h1>Tru-Min Converter</h1>
 <nav>
       <ul>
-            <button>
-                  <li>
-                        <a href="{{ url_for('index') }}">Convert Audio</a>
-                  </li>
-            </button>
-            <button>
-                  <li><a href="{{ url_for('youtube') }}">Youtube</a></li>
-            </button>
-            <button>
-                  <li><a href="{{ url_for('playlist') }}">Playlist</a></li>
-            </button>
+            <li class="convert">
+                  <button>Convert</button><br />
+                  <ul>
+                        <li>
+                              <a href="{{ url_for('index') }}"
+                                    >Convert Audio Local</a
+                              >
+                        </li>
+                        <br />
+                        <li>
+                              <a href="{{ url_for('convert_video') }}"
+                                    >Convert Audio With Youtube</a
+                              >
+                        </li>
+                  </ul>
+            </li>
+            <li>
+                  <button>
+                        <a href="{{ url_for('youtube') }}">Youtube</a>
+                  </button>
+            </li>
+            <li>
+                  <button>
+                        <a href="{{ url_for('playlist') }}">Playlist</a>
+                  </button>
+            </li>
       </ul>
 </nav>

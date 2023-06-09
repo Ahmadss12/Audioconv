@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+{% include 'navbar.html' %}
+
+<form action="/convert_vidio" method="POST">
+      <label for="video_url">Convert Audio</label><br /><br />
+      <input
+            type="text"
+            name="video_url"
+            id="video_url"
+            placeholder="Enter YouTube URL"
+            required
+      /><br /><br />
+      <input type="submit" value="Download" />
+      <p>Automatically convert video to MP3 and download.</p>
+</form>
+
+{% if output_file %}
+<p>File converted: {{ output_file }}</p>
+<a href="{{ url_for('download', filename=output_file) }}">Download</a>
+{% endif %} {% if loading %}
+<p>Loading...</p>
+{% endif %}

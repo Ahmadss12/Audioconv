@@ -7,6 +7,7 @@ from youtube import download_youtube_video, save_to_dynamodb, get_video_id_from_
 from playlist import download_youtube_playlist
 import http.client
 from http.client import IncompleteRead
+from flask import jsonify
 
 
 
@@ -72,6 +73,10 @@ def youtube():
 def playlist():
     return render_template('playlist.html')
 
+@app.route('/convert_video')
+def convert_video():
+    return render_template('convert_video.html')
+
 @app.route('/convert', methods=['POST'])
 def convert():
     video = request.files['video']
@@ -92,6 +97,38 @@ def convert():
             'audio_filename': audio_filename,
             's3_file_name': s3_file_name,
             'bucket_name': bucket_name
+        }
+    )
+
+    return redirect(url_for('download', filename=audio_filename))
+
+
+@app.route('/convert_vidio', methods=['POST'])
+def convert_vidio():
+    video_url = request.form['video_url']
+
+    # Download video dari YouTube
+    video_path = download_youtube_video(video_url)
+    if video_path is None:
+        return "Failed to download YouTube video."
+
+    # Konversi video menjadi audio
+    audio_filename = os.path.splitext(os.path.basename(video_path))[0] + '.mp3'
+    audio_path = audio_filename
+    convert_video_to_audio(video_path, audio_path)
+
+    # Upload audio ke S3
+    bucket_name = 'converter12'
+    s3_file_name = 'audio/' + audio_filename
+    upload_to_s3(audio_path, bucket_name, s3_file_name)
+
+    # Simpan data ke DynamoDB
+    table.put_item(
+        Item={
+            'audio_filename': audio_filename,
+            's3_file_name': s3_file_name,
+            'bucket_name': bucket_name,
+            'video_url': video_url
         }
     )
 
@@ -154,7 +191,8 @@ def download_playlist():
     
     # Do something with the downloaded videos
 
-    return "Playlist downloaded successfully"
+    # Return the list of videos as a JSON response
+    return jsonify(videos)
 
 
 
