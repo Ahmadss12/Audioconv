@@ -37,9 +37,13 @@ def upload_to_s3(video_path):
 
 def get_video_id_from_url(video_url):
     # Menggunakan ekspresi reguler untuk mengekstrak ID video dari URL-nya
-    video_id = re.search(r'v=([a-zA-Z0-9_-]+)', video_url)
+    if 'youtu.be' in video_url:
+        video_id = re.search(r'youtu.be/([a-zA-Z0-9_-]+)', video_url)
+    else:
+        video_id = re.search(r'v=([a-zA-Z0-9_-]+)', video_url)
     if video_id:
         return video_id.group(1)
     else:
         return None
+
 
