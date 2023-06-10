@@ -13,7 +13,7 @@ def download_youtube_video(video_url):
     try:
         yt = YouTube(video_url)
         video = yt.streams.first()
-        video_path = 'temp_video.mp4'
+        video_path = yt.title + '.mp4'
         video.download(output_path=os.path.dirname(video_path), filename=os.path.basename(video_path))
         return video_path
     except Exception as e:
