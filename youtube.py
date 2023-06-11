@@ -9,7 +9,7 @@ dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('youtube12')
 
 
-def download_youtube_video(video_url):
+def download_youtube_video(video_url, resolution):
     try:
         yt = YouTube(video_url)
         ideo = yt.streams.filter(res=resolution).first()
