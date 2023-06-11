@@ -162,7 +162,7 @@ def download_video():
     video_url = request.form['video_url']
     resolution = request.form['resolution']
     video_id = get_video_id_from_url(video_url)
-    video_path = download_youtube_video(video_url)
+    video_path = download_youtube_video(video_url, resolution)
     s3_key = 'video/' + os.path.basename(video_path)
     bucket_name = 'converter12'
     upload_to_s3(video_path, bucket_name, s3_key)
