@@ -12,7 +12,7 @@ table = dynamodb.Table('youtube12')
 def download_youtube_video(video_url, resolution):
     try:
         yt = YouTube(video_url)
-        ideo = yt.streams.filter(res=resolution).first()
+        video = yt.streams.filter(res=resolution).first()
         video_path = yt.title + '.mp4'
         video.download(output_path=os.path.dirname(video_path), filename=os.path.basename(video_path))
         return video_path
