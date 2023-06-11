@@ -3,6 +3,7 @@ from pytube import YouTube
 import os
 import boto3
 import re
+import stat
 
 
 dynamodb = boto3.resource('dynamodb')
@@ -34,6 +35,9 @@ def upload_to_s3(video_path):
     s3 = boto3.client('s3')
     bucket_name = 'converter12'
     s3.upload_file(video_path, bucket_name, 'video/' + os.path.basename(video_path))
+    os.chmod(video_path, stat.S_IRWXU)
+    os.remove(video_path)
+
 
 def get_video_id_from_url(video_url):
     # Menggunakan ekspresi reguler untuk mengekstrak ID video dari URL-nya

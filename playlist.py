@@ -27,6 +27,8 @@ def download_youtube_playlist(playlist_url):
 def upload_to_s3(file_path, bucket_name, s3_key):
     s3 = boto3.client('s3')
     s3.upload_file(file_path, bucket_name, s3_key)
+    os.remove(file_path)
+
 
 def save_to_dynamodb(video_id, video_url, s3_key):
     dynamodb = boto3.resource('dynamodb')

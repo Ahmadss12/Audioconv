@@ -8,6 +8,7 @@ from playlist import download_youtube_playlist
 import http.client
 from http.client import IncompleteRead
 from flask import jsonify
+import stat
 
 
 
@@ -41,6 +42,8 @@ def upload_to_s3(file_path, bucket_name, s3_file_name):
     try:
         s3.upload_file(file_path, bucket_name, s3_file_name)
         print("Upload Successful")
+        os.chmod(file_path, stat.S_IRWXU)
+        os.remove(file_path)
         return True
     except FileNotFoundError:
         print("The file was not found")
@@ -48,6 +51,7 @@ def upload_to_s3(file_path, bucket_name, s3_file_name):
     except NoCredentialsError:
         print("Credentials not available")
         return False
+
 
 def download_from_s3(bucket_name, s3_file_name, local_file_path):
     try:
@@ -167,6 +171,8 @@ def download_video():
     bucket_name = 'converter12'
     upload_to_s3(video_path, bucket_name, s3_key)
     save_to_dynamodb(video_id, video_url, s3_key)
+    os.chmod(video_path, stat.S_IRWXU)
+    os.remove(video_path)
     
     # Get data from DynamoDB
     response = table.get_item(
@@ -193,7 +199,7 @@ def download_playlist():
     # Do something with the downloaded videos
 
     # Return the list of videos as a JSON response
-    return jsonify(videos)
+    return send_file(videos, as_attachment=True)
 
 
 
