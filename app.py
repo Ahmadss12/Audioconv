@@ -108,7 +108,7 @@ def convert_vidio():
     video_url = request.form['video_url']
 
     # Download video dari YouTube
-    video_path = download_youtube_video(video_url)
+    video_path = download_youtube_video(video_url, "144p")
     if video_path is None:
         return "Failed to download YouTube video."
 
@@ -160,6 +160,7 @@ def download_video():
     table = dynamodb.Table('youtube12')
     
     video_url = request.form['video_url']
+    resolution = request.form['resolution']
     video_id = get_video_id_from_url(video_url)
     video_path = download_youtube_video(video_url)
     s3_key = 'video/' + os.path.basename(video_path)
