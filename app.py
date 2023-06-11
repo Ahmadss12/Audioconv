@@ -125,6 +125,8 @@ def convert_vidio():
     bucket_name = 'converter12'
     s3_file_name = 'audio/' + audio_filename
     upload_to_s3(audio_path, bucket_name, s3_file_name)
+    os.chmod(video_path, stat.S_IRWXU)
+    os.remove(video_path)
 
     # Simpan data ke DynamoDB
     table.put_item(
