@@ -168,13 +168,17 @@ def download_video():
     video_url = request.form['video_url']
     resolution = request.form['resolution']
     video_id = get_video_id_from_url(video_url)
-    video_path = download_youtube_video(video_url, resolution)
-    s3_key = 'video/' + os.path.basename(video_path)
+    final_path = download_youtube_video(video_url, resolution)
+    
+    if final_path is None:
+        return "Error downloading YouTube video"
+    
     bucket_name = 'converter12'
-    upload_to_s3(video_path, bucket_name, s3_key)
-    save_to_dynamodb(video_id, video_url, s3_key)
-    os.chmod(video_path, stat.S_IRWXU)
-    os.remove(video_path)
+    s3_key = 'video/' + os.path.basename(final_path)
+    upload_to_s3(final_path, bucket_name, s3_key)
+    save_to_dynamodb(table, video_id, video_url, s3_key)
+    # os.chmod(final_path, stat.S_IRWXU)
+    # os.remove(final_path)
     
     # Get data from DynamoDB
     response = table.get_item(
