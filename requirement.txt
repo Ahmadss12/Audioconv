@@ -2,4 +2,4 @@ Flask
 boto3
 moviepy
 pytube
-ffmpeg
+ffmpeg-python
