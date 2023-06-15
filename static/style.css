@@ -140,11 +140,13 @@ li {
 .banner-ad.left {
     left: 10%;
       top: 90%;
+      justify-content: center;
 }
 
 .banner-ad.right {
     right: 10%;
       top: 90%;
+      justify-content: center;
 }
 
 
@@ -159,10 +161,10 @@ li {
 }
 
 .banner2-ad.left {
-    left: 0;
+    left: 10%;
 }
 
 .banner2-ad.right {
-    right: 0;
+    right: 10%;
 }
 
