@@ -130,6 +130,21 @@ li {
       text-decoration: none;
 }
 
+.banner-ad {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.banner-ad.left {
+    left: 0;
+}
+
+.banner-ad.right {
+    right: 0;
+}
+
+
 .dropdown:hover .dropdown-content {
       display: block;
 }
