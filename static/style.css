@@ -132,7 +132,7 @@ li {
 
 .banner-ad {
     position: fixed;
-    top: 0%;
+    top: 5%;
     transform: translateY(-80%);
       left: 25%
 }
