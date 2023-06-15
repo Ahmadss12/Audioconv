@@ -151,3 +151,18 @@ li {
 .dropdown:hover .dropdown-content {
       display: block;
 }
+
+.banner2-ad {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.banner2-ad.left {
+    left: 0;
+}
+
+.banner2-ad.right {
+    right: 0;
+}
+
