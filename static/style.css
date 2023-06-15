@@ -133,16 +133,17 @@ li {
 .banner-ad {
     position: fixed;
     top: 10%;
-    transform: translateY(-50%);
+    transform: translateY(-80%);
 }
 
 .banner-ad.left {
-    left: 0;
+    left: 20%;
       top: 90%;
 }
 
 .banner-ad.right {
-    right: 0;
+    right: 20%;
+      top: 90%;
 }
 
 
