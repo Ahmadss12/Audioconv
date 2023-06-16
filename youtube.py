@@ -13,9 +13,13 @@ s3 = boto3.client('s3')
 
 def download_youtube_video(video_url, resolution):
     try:
+        print("Starting download_youtube_video function")
         yt = YouTube(video_url)
+        print("YouTube object created:", yt)
         video_stream = yt.streams.filter(res=resolution, adaptive=True, only_video=True).first()
+        print("Video stream found:", video_stream)
         audio_stream = yt.streams.filter(only_audio=True).first()
+        print("Audio stream found:", audio_stream)
         if not video_stream:
             raise Exception(f"No video stream with resolution {resolution} found")
         if not audio_stream:
@@ -34,15 +38,13 @@ def download_youtube_video(video_url, resolution):
     .overwrite_output()
     .run()
 )
-
-
-
         os.remove(video_path)
         os.remove(audio_path)
         return final_path
     except Exception as e:
         print("Error downloading YouTube video:", str(e))
         return None
+
 
 
 def save_to_dynamodb(table, video_id, video_url, s3_key):
